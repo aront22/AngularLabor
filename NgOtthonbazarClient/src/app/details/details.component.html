@@ -1,0 +1,42 @@
+<ng-container *ngIf="advertisement != undefined">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>{{advertisement.city.name}}</h1>
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-end">{{advertisement.price}} M Ft</h1>
+        </div>
+    </div>
+    <p>{{advertisement.address}}</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Alapterület</h4>
+            <p>{{advertisement.size}} m<sup>2</sup></p>
+        </div>
+        <div class="col-md-3">
+            <h4>Szobák</h4>
+            <p>{{advertisement.room}} + {{advertisement.halfRoom}}</p>
+        </div>
+        <div class="col-md-3">
+            <h4>Típus</h4>
+            <p>{{advertisement.advertisementType | advertisementType}}</p>
+        </div>
+        <div class="col-md-3">
+            <h4>Éppítés Éve</h4>
+            <p>{{advertisement.buildDate}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img src={{advertisement.imageUrl}}>
+        </div>
+    </div>
+
+    <h2>Leírás</h2>
+    <p>{{advertisement.description}}</p>
+    <a [routerLink]="['/edit', advertisement.id]">Szerkesztés</a> |
+    <a [routerLink]="['/']">Vissza</a>
+</ng-container>
+

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Advertisement } from '../models';
+import { Advertisement, Filter } from '../models';
 
 @Component({
   selector: 'app-list',
@@ -9,14 +9,18 @@ import { Advertisement } from '../models';
 })
 export class ListComponent implements OnInit {
   advertisements: Advertisement[] = [];
+  filter: Filter = new Filter();
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getAdvertisements();
   }
+  
   getAdvertisements() {
-    this.http.get<Advertisement[]>('/api/advertisements')
-      .subscribe(resp => this.advertisements = resp);
-  }
+    this.http.get<Advertisement[]>('/api/advertisements',
+    { params: new HttpParams({ fromObject: <any>this.filter }) })
+    .subscribe(resp => this.advertisements = resp);
+    }
 }
 
